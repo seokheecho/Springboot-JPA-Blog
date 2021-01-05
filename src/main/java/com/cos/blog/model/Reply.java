@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,12 +34,12 @@ public class Reply {
   @Column(name = "content", nullable = false, length = 200)
   private String content;
   
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY) // 기본(default) fetch = FetchType.LAZY
   @JoinColumn(name = "board_id")
   private Board board;
   
   @ManyToOne
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name = "user_id") // 기본(default) fetch = FetchType.LAZY
   private UserInfo userInfo;
   
   @CreationTimestamp

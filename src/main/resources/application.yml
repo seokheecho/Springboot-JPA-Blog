@@ -22,6 +22,8 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
+      # 최초 프로젝트 생성 시에 만 create 로 사용해야한다. 이후 사용 시 data 값이 삭제되고 create 된다!
+      # 따라서 최초 이후엔 update 혹은 none 으로 변경해서 사용!
       ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

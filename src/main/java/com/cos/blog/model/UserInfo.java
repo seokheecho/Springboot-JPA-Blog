@@ -12,7 +12,16 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
-// ORM -> Java(다른언어) Object -> 테이블로 매핑해주는 기술
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Builder // 빌더 패턴!!!
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+//ORM -> Java(다른언어) Object -> 테이블로 매핑해주는 기술
 @Entity(name = "user_info") // User 클래스가 PostgreSQL 에 테이블이 생성이 된다.
 @Table(name = "user_info")
 public class UserInfo { // **의문 : postgreSQL 은 User 로 테이블 생성이 안되나???;;

@@ -8,11 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -24,29 +22,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "board")
-@Table(name = "board")
-public class Board {
+@Entity(name = "reply")
+@Table(name = "reply")
+public class Reply {
   
-  @Id
+  @Id // Primary key
   @GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
-  private int id;
+  private int id; // 시퀸스, auto_increment
   
-  @Column(name = "title", nullable = false, length = 100)
-  private String title;
+  @Column(name = "content", nullable = false, length = 200)
+  private String content;
   
-  @Lob // 대용량 데이터
-  private String content; // 섬모노트 라이브러리 <html> 태그가 섞여서 디자인이 됨.
+  @ManyToOne
+  @JoinColumn(name = "board_id")
+  private Board board;
   
-  @ColumnDefault("0")
-  private int count; // 조회수
-  
-  @ManyToOne // Many = Many, User = One
+  @ManyToOne
   @JoinColumn(name = "user_id")
-  private UserInfo userInfo; // DB는 오브젝트를 저장할 수 없다. FK, 자바는 오브젝트를 저장할 수 있다.
+  private UserInfo userInfo;
   
   @CreationTimestamp
   private Timestamp createDate;
-  
-  
 }

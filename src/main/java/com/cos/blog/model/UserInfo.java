@@ -28,7 +28,7 @@ public class UserInfo { // **의문 : postgreSQL 은 User 로 테이블 생성�
   
   @Id // Primary key
   @GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
-//  @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user_seq_generator")
+//  @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user_info_id_seq")
   private int id; // 시퀸스, auto_increment
   
   @Column(name = "username", nullable = false, length = 30)
